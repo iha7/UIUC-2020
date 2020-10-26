@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 var mysql = require('mysql');
+const MongoClient = require('mongodb').MongoClient;
 
 const app = express();
 
@@ -35,6 +36,8 @@ app.listen(PORT, () => {
 });
 
 
+//mysql code
+
 var con = mysql.createConnection({
   host: "localhost",
   user: "root",
@@ -43,5 +46,16 @@ var con = mysql.createConnection({
 
 con.connect(function(err) {
   if (err) throw err;
-  console.log("Connected!");
+  console.log("Connected to MySQL!");
+});
+
+//mongodb code
+
+const uri = "mongodb+srv://root:cs411@cluster0.k1mp1.mongodb.net/sample_airbnb?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  console.log("Connected to MongoDB")
+  client.close();
 });
