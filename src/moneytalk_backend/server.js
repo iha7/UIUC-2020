@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+var mysql = require('mysql');
 
 const app = express();
 
@@ -31,4 +32,16 @@ require("./app/routes/app.routes")(app);
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
+});
+
+
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "cs411"
+});
+
+con.connect(function(err) {
+  if (err) throw err;
+  console.log("Connected!");
 });
