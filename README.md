@@ -1,7 +1,7 @@
 # CS411-FinalProject
 
 
-How to run:
+How to run Back-end:
 
 Install Node.JS:
 https://nodejs.org/en/download/
@@ -16,6 +16,7 @@ google mongodb atlas, make cluster, include sample DB(?) you might just be able 
 
 after everything is setup, go to server folder
 
+```
 run npm init
 
 run npm install
@@ -23,11 +24,20 @@ run npm install
 npm install mysql
 
 npm install mongodb
+```
 
+Then set up mysql server:
+```
+mysql -u root -p 
+(look db.config for password)
+```
+Create database:
+```
+mysql>CREATE DATABASE testdb;
+```
 then run:
 
 node server.js
-
 
 you should see something like this:
 
@@ -41,4 +51,9 @@ Executing (default): CREATE TABLE IF NOT EXISTS `data` (`id` INTEGER NOT NULL au
 Executing (default): SHOW INDEX FROM `data`
 Drop and re-sync db.
 Connected to MongoDB
+
+How to run front-end:
+```
+npm start
+```
 
