@@ -23,11 +23,6 @@ app.get("/", (req, res) => {
   res.json({ message: "Money Talks." });
 });
 
-const db = require("./app/models");
-db.sequelize.sync({ force: true }).then(() => {
-    console.log("Drop and re-sync db.");
-  });
-
 require("./app/routes/app.routes")(app);
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
@@ -41,13 +36,22 @@ app.listen(PORT, () => {
 var con = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "cs411"
+  password: "cs411",
+  database: "testdb"
 });
 
 con.connect(function(err) {
   if (err) throw err;
   console.log("Connected to MySQL!");
 });
+
+
+//updates testtable from testdb
+  var sql = "UPDATE testtable SET string = 'Canyon 123' WHERE id = 1";
+  con.query(sql, function (err, result) {
+    if (err) throw err;
+    console.log(result.affectedRows + " record(s) updated");
+  });
 
 //mongodb code
 
